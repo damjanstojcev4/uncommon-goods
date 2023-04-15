@@ -16,6 +16,14 @@ public class Product {
     private String description;
     @Column(nullable = false)
     private String price;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @Column(nullable = false)
     private String photo_one;
     @Column(nullable = false)
