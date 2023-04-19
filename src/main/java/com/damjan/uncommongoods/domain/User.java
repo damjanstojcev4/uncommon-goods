@@ -10,33 +10,38 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false)
-    private String first_name;
-    @Column(nullable = false)
-    private String last_name;
+    @Column(name = "first_name", nullable = false)
+    private String firstName;
+    @Column(name = "last_name",nullable = false)
+    private String lastName;
     @Column(nullable = false)
     private String email;
     @Column(nullable = false)
     private String password;
+    @Column(name = "user_name",unique = true)
+    private String userName;
     private String profile_photo;
 
     public User() {
     }
 
-    public User(String first_name, String last_name, String email, String password, String profile_photo) {
-        this.first_name = first_name;
-        this.last_name = last_name;
+    public User(String first_name, String lastName, String email, String password, String userName,String profile_photo) {
+        this.firstName = first_name;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.userName = userName;
         this.profile_photo = profile_photo;
     }
 
-    public User(Integer id, String first_name, String last_name, String email, String password, String profile_photo) {
+    public User(Integer id, String first_name, String lastName, String email, String password, String userName,
+                String profile_photo) {
         this.id = id;
-        this.first_name = first_name;
-        this.last_name = last_name;
+        this.firstName = first_name;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
+        this.userName = userName;
         this.profile_photo = profile_photo;
     }
 
@@ -48,20 +53,20 @@ public class User {
         this.id = id;
     }
 
-    public String getFirst_name() {
-        return first_name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirst_name(String first_name) {
-        this.first_name = first_name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLast_name() {
-        return last_name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLast_name(String last_name) {
-        this.last_name = last_name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -80,6 +85,14 @@ public class User {
         this.password = password;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getProfile_photo() {
         return profile_photo;
     }
@@ -93,24 +106,26 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(first_name, user.first_name) &&
-                Objects.equals(last_name, user.last_name) && Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) && Objects.equals(profile_photo, user.profile_photo);
+        return Objects.equals(id, user.id) && Objects.equals(firstName, user.firstName) &&
+                Objects.equals(lastName, user.lastName) &&
+                Objects.equals(email, user.email) && Objects.equals(password, user.password) &&
+                Objects.equals(userName, user.userName) && Objects.equals(profile_photo, user.profile_photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, first_name, last_name, email, password, profile_photo);
+        return Objects.hash(id, firstName, lastName, email, password, userName, profile_photo);
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", first_name='" + first_name + '\'' +
-                ", last_name='" + last_name + '\'' +
+                ", first_name='" + firstName + '\'' +
+                ", last_name='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", user_name='" + userName + '\'' +
                 ", profile_photo='" + profile_photo + '\'' +
                 '}';
     }
